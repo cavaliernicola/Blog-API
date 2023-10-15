@@ -12,7 +12,8 @@ class User extends Model {
 	}
 
 	initialStatement(table) {
-		table.uuid("user_id").notNullable().primary().defaultTo(database.fn.uuid());
+		table.increments("id").notNullable().primary();
+		table.uuid("user_id").notNullable().defaultTo(database.fn.uuid()).index();
 		table.string("username", 30).unique().notNullable();
 		table.integer("age").notNullable();
 		table.string("city", 60).notNullable();

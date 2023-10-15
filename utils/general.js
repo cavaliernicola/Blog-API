@@ -16,7 +16,7 @@ const makePostObject = (rows) => {
 		if (row.interaction_type !== null) {
 			interaction = {
 				interaction_type: row.interaction_type,
-				content: row.content ? row.content : undefined,
+				content: row.content,
 				created_at: row.i_created_at,
 				city: row.city,
 			};

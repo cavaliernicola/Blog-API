@@ -9,11 +9,12 @@ class User extends Model {
 	}
 
 	initialStatement(table) {
+		table.increments("id").notNullable().primary();
 		table
 			.uuid("interaction_id")
 			.notNullable()
-			.primary()
-			.defaultTo(database.fn.uuid());
+			.defaultTo(database.fn.uuid())
+			.index();
 		table.enu("interaction_type", ["like", "comment"]).notNullable();
 		table.text("content").checkLength(">=", 1);
 		table.uuid("to_post").notNullable();

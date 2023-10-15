@@ -22,11 +22,11 @@ The main features of the API are:
 2. Filter posts by multiple query filters
 ```
 
-> **Note**: For more info about API usage visit the [documentation](https://github.com/cavaliernicola/Blog-API/blob/main/docs/index.md).
+> **Note**: For more info about API usage visit the [documentation](https://github.com/cavaliernicola/Blog-API/blob/mysql/docs/index.md).
 
 ## Technologies
 
-![Node.js](https://img.shields.io/badge/Node.js-black.svg?style=for-the-badge&logo=node.js&logoColor=green) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-black?style=for-the-badge&logo=postgresql&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-black.svg?style=for-the-badge&logo=node.js&logoColor=green) ![MySQL](https://img.shields.io/badge/mysql-black?style=for-the-badge&logo=mysql&logoColor=yellow)
 
 ## Dependencies
 
@@ -40,14 +40,14 @@ The main features of the API are:
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/it/download)
-- [PostgreSQL Server](https://www.elephantsql.com/) (optional)
-  > **Note**: The application uses a query builder which adapts the query for multiple SQL dialects. The project has been tested only for SQLite and PostgreSQL. Check [mysql branch](https://github.com/cavaliernicola/Blog-API/tree/mysql) for MySQL example.
+- [MySQL Server](https://dev.mysql.com/downloads/mysql/)
+  > **Note**: The application uses a query builder which adapts the query for multiple SQL dialects. This project has been tested only for MySQL, check [main branch](https://github.com/cavaliernicola/Blog-API/tree/main) for PostgreSQL example.
 
 ### Installation
 
 ```sh
 1. Clone the repository
-git clone https://github.com/cavaliernicola/Blog-API.git
+git clone --single-branch --branch mysql https://github.com/cavaliernicola/Blog-API.git
 
 2. Go to the project directory
 Example: cd to/path/of/project

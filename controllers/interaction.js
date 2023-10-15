@@ -54,6 +54,7 @@ const updateInteraction = async (req, res) => {
 	const { id } = req.params;
 	const values = Interaction.validateUserInput(req.body);
 	const { interaction_type, content } = values;
+
 	const interaction = await Interaction.update(
 		{ interaction_id: id },
 		{

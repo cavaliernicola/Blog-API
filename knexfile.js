@@ -1,28 +1,29 @@
 require("dotenv").config();
 
-const development = {
-	client: "better-sqlite3",
-	connection: {
-		filename: "./db/dev.sqlite3",
-	},
-	useNullAsDefault: true,
-};
-
 const production = {
-	client: "pg",
+	client: "mysql2",
 	connection: {
 		host: process.env.DB_HOST,
 		user: process.env.DB_USER,
 		password: process.env.DB_PASSWORD,
 		database: process.env.DB_NAME,
+		timezone: "Z",
+	},
+};
+
+const development = {
+	...production,
+	connection: {
+		...production.connection,
+		database: process.env.DEV_DB_NAME,
 	},
 };
 
 const test = {
-	// ...production,
-	...development,
+	...production,
 	connection: {
-		filename: ":memory:",
+		...production.connection,
+		database: process.env.TEST_DB_NAME,
 	},
 };
 

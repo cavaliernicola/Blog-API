@@ -16,39 +16,38 @@ class Model {
 		});
 	}
 
-	find(condition) {
-		return database(this.tableName).where(condition);
+	async findOne(condition) {
+		const result = await database(this.tableName).where(condition);
+		result[0] ? delete result[0].id : undefined;
+		return result[0];
 	}
 
-	findOne(condition) {
-		return this.find(condition).first();
+	async create(props) {
+		const statement = database(this.tableName).insert(props);
+		await statement;
+
+		const result = await database(this.tableName)
+			.select("*")
+			.where(database.raw("id = LAST_INSERT_ID()"));
+
+		result[0] ? delete result[0].id : undefined;
+		return result[0];
 	}
 
-	create(props) {
-		delete props.id;
-		return database(this.tableName)
-			.insert(props)
-			.returning("*")
-			.then((result) => result[0]);
+	async update(condition, props) {
+		const statement = database(this.tableName).update(props).where(condition);
+		await statement;
+
+		const result = await database(this.tableName).select("*").where(condition);
+
+		result[0] ? delete result[0].id : undefined;
+		return result[0];
 	}
 
-	update(condition, props) {
-		delete props.id;
-		return database(this.tableName)
-			.update(props)
-			.where(condition)
-			.returning("*")
-			.then((result) => result[0]);
-	}
-
-	delete(condition) {
-		return (
-			database(this.tableName)
-				.del()
-				.where(condition)
-				// delete statement return a number, we convert it to boolean
-				.then((result) => !!result)
-		);
+	async delete(condition) {
+		const result = await database(this.tableName).del().where(condition);
+		// delete statement return a number, we convert it to boolean
+		return !!result;
 	}
 }
 

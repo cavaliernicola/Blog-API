@@ -9,7 +9,8 @@ class Post extends Model {
 	}
 
 	initialStatement(table) {
-		table.uuid("post_id").notNullable().primary().defaultTo(database.fn.uuid());
+		table.increments("id").notNullable().primary();
+		table.uuid("post_id").notNullable().defaultTo(database.fn.uuid()).index();
 		table.text("title").notNullable().checkLength(">=", 2);
 		table.datetime("created_at").defaultTo(database.fn.now());
 	}

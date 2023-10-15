@@ -72,9 +72,9 @@ module.exports = () =>
 							title: "random post",
 						});
 						await Interaction.create({
-							created_at: moment(date, "DD/MM/YYYY").format(
-								"YYYY-MM-DD HH:mm:ss"
-							),
+							created_at: moment
+								.utc(date, "DD/MM/YYYY")
+								.format("YYYY-MM-DD HH:mm:ss"),
 							to_post: post.post_id,
 							created_by: user.user_id,
 							interaction_type: "like",
